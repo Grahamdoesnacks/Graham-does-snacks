@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101114">
+<meta name="description" content="Graham Does Snacks — food reviews, rankings and The Brick Era.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<title>Graham Does Snacks</title>
+<style>
+:root{color-scheme:dark;--bg:#101114;--panel:#1c1d22;--line:#303139;--gold:#edb54e;--muted:#a2a3aa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:18px max(18px,env(safe-area-inset-left));display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#101114f2;backdrop-filter:blur(12px);z-index:2}
+.logo{width:44px;height:44px;border-radius:12px;background:var(--gold);color:#151515;display:grid;place-items:center;font-size:26px;font-weight:950}
+.brand{font-size:14px;font-weight:900;letter-spacing:.4px}.sub{font-size:9px;letter-spacing:2px;color:var(--gold);margin-top:3px}
+nav{display:flex;gap:5px;padding:10px 14px;overflow:auto;background:#191a1f;border-bottom:1px solid var(--line);position:sticky;top:81px;z-index:2}
+nav button{border:0;background:transparent;color:#b9bac0;padding:10px 13px;border-radius:9px;white-space:nowrap;font-size:12px;font-weight:700}
+nav button.active{background:var(--gold);color:#171717}
+main{max-width:760px;margin:auto;padding:20px 17px 40px;min-height:70vh}
+.eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:850}
+.hero{margin:15px 0 24px;padding:25px 20px;border-radius:17px;border:1px solid #57452c;background:radial-gradient(ellipse at 100% 0%,#55402a 0,transparent 55%),linear-gradient(140deg,#29251f,#17181d 70%)}
+h1{font-size:clamp(29px,8vw,43px);line-height:1.05;margin:14px 0}.gold{color:var(--gold)}
+p{line-height:1.65}.muted{color:var(--muted)}.small{font-size:12px}
+.pill{display:inline-block;border-radius:30px;padding:6px 10px;background:#332b20;color:#f3c36f;font-size:10px;font-weight:800;letter-spacing:.5px}
+.btn{border:0;border-radius:10px;padding:12px 15px;background:var(--gold);color:#161616;font-weight:850;font-size:12px;cursor:pointer}
+.btn.secondary{background:#292a30;color:#fff;border:1px solid #41424a}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card,.tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:11px 0}
+.tile{margin:0;text-align:left;color:white;min-height:108px;cursor:pointer}
+.tile strong{display:block;margin:7px 0 4px}
+h2{font-size:28px;margin:9px 0 12px}h3{font-size:16px;margin:8px 0}
+a{color:var(--gold);text-decoration:none}.social{display:flex;align-items:center;justify-content:space-between;gap:12px}
+input,textarea{width:100%;background:#111216;border:1px solid #41424a;border-radius:9px;color:white;padding:11px;font:inherit;margin:5px 0 12px}
+footer{text-align:center;color:#81828a;border-top:1px solid var(--line);padding:20px 15px;font-size:10px;line-height:1.8}
+@media(min-width:600px){main{padding-top:28px}.hero{padding:34px}.grid{gap:14px}}
+</style>
+</head>
+<body>
+<header><div class="logo">G</div><div><div class="brand">GRAHAM DOES SNACKS</div><div class="sub">THE BRICK ERA</div></div></header>
+<nav aria-label="Main navigation">
+<button class="active" data-page="home">HOME</button><button data-page="reviews">REVIEWS</button><button data-page="rankings">RANKINGS</button><button data-page="brick">BRICK ERA</button><button data-page="socials">SOCIALS</button><button data-page="about">ABOUT</button>
+</nav>
+<main id="app" aria-live="polite"></main>
+<footer>GRAHAM DOES SNACKS · INDEPENDENT CREATIVE PROJECT<br>Fictional animated presentation. Not an official Graham account or endorsement.</footer>
+<script>
+const app=document.querySelector('#app');
+const pages={
+home:`<div class="eyebrow">A NEW CHAPTER BEGINS</div><section class="hero"><span class="pill">CHAPTER ONE · THE BRICK ERA</span><h1>WELCOME TO THE<br><span class="gold">NEW ERA.</span></h1><p class="muted">Your home for snack reviews, rankings, announcements and everything happening in the Graham Does Snacks universe.</p><div class="row"><button class="btn" data-go="reviews">EXPLORE REVIEWS →</button><button class="btn secondary" data-go="brick">THE NEW ERA</button></div></section><div class="eyebrow">EXPLORE</div><div class="grid"><button class="tile" data-go="reviews"><span>🍔</span><strong>Food reviews</strong><span class="muted small">The review catalogue</span></button><button class="tile" data-go="rankings"><span>🏆</span><strong>Rankings</strong><span class="muted small">Snack leaderboard</span></button></div><div class="card"><div class="eyebrow">LATEST UPDATE</div><h3>The Brick Era</h3><p class="muted small">A fresh visual direction and a new chapter for the project.</p><button class="btn secondary" data-go="brick">READ ANNOUNCEMENT</button></div>`,
+reviews:`<div class="eyebrow">THE TASTING ROOM</div><h2>Food <span class="gold">reviews.</span></h2><p class="muted">A place for every snack, meal and taste test. Add real review details as new videos are published.</p><div class="card"><span class="pill">READY FOR FIRST REVIEW</span><h3>🍔 First food review</h3><p class="muted small">Your first review title, video link and score can be added here when available.</p></div><div class="card"><h3>🍟 Snacks & sides</h3><p class="muted small">A collection of crisps, snacks and sides.</p><span class="pill">COMING SOON</span></div><div class="card"><h3>🥤 Drinks & desserts</h3><p class="muted small">Sweet treats, drinks and desserts.</p><span class="pill">COMING SOON</span></div>`,
+rankings:`<div class="eyebrow">THE LEADERBOARD</div><h2>Snack <span class="gold">rankings.</span></h2><div class="card" style="text-align:center;padding:28px"><div style="font-size:38px">🏆</div><h3>No rankings yet</h3><p class="muted small">The leaderboard will grow as real reviews and scores are added. No scores have been made up.</p></div><div class="card"><h3>Rating system</h3><p class="muted small">Each review can receive an overall score out of 10.</p><span class="pill">OUT OF 10</span></div>`,
+brick:`<div class="eyebrow">A NEW CHAPTER</div><section class="hero"><div style="font-size:42px">🧱</div><h1>THE <span class="gold">BRICK ERA.</span></h1><p class="muted">A new creative direction. A distinct fictional animated presentation. A fresh identity for the next chapter of Graham Does Snacks.</p><span class="pill">CHAPTER ONE</span></section><div class="card"><h3>01 · A new look</h3><p class="muted small">A distinct animated presentation for the project.</p></div><div class="card"><h3>02 · New content</h3><p class="muted small">Fresh food reviews and original videos.</p></div><div class="card"><h3>03 · A new chapter</h3><p class="muted small">A new direction, with its own identity.</p></div>`,
+socials:`<div class="eyebrow">FOLLOW THE PROJECT</div><h2>Social <span class="gold">channels.</span></h2><p class="muted">Find Graham Does Snacks on social media.</p><div class="card social"><div><h3>♪ TikTok</h3><p class="muted small">@grahamdoessnacks</p></div><a class="btn" href="https://www.tiktok.com/@grahamdoessnacks" target="_blank" rel="noopener">OPEN TIKTOK ↗</a></div><div class="card social"><div><h3>◎ Instagram</h3><p class="muted small">@grahamdoesnacks</p></div><a class="btn" href="https://www.instagram.com/grahamdoesnacks/" target="_blank" rel="noopener">OPEN INSTAGRAM ↗</a></div><p class="muted small">Social buttons open the profiles in your browser or social app.</p>`,
+about:`<div class="eyebrow">ABOUT THE PROJECT</div><h2>GRAHAM DOES <span class="gold">SNACKS.</span></h2><p class="muted">An independent creative food-review entertainment project, featuring its own fictional animated presentation and original content.</p><div class="card"><h3>Our direction</h3><p class="muted small">Food, reviews, entertainment and creativity. The Brick Era marks a new visual chapter.</p></div><div class="card"><h3>Project information</h3><p class="muted small">This is an independent fan-made project concept. It is not an official account or endorsement by Graham.</p></div>`
+};
+function show(page){if(!pages[page])return;app.innerHTML=pages[page];document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-page],[data-go]');if(!b)return;show(b.dataset.page||b.dataset.go)});
+show('home');
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body>
+</html>
